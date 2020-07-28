@@ -10,41 +10,40 @@ import axios from 'axios';
 
 export default class Home extends PureComponent {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      tips: 'Hello   Lamar!!!'
+    constructor(props) {
+        super(props);
+        this.state = {
+            tips: 'Hello   Lamar!!!'
+        }
     }
-  }
 
-  componentWillMount() {
+    componentWillMount() {
 
-  }
+    }
 
-  componentDidMount() {
-    this.getData()
-  }
+    componentDidMount() {
+        this.getData()
+    }
 
-  render() {
-    return (
-      <div className="home-bg">
-        <div className="home-text">{this.state.tips}</div>
-      </div>);
-  }
+    render() {
+        return (
+            <div className="home-bg">
+                <div className="home-text">{this.state.tips}</div>
+            </div>);
+    }
 
-  getData() {
+    getData() {
 
-    console.log("cyc----getData1")
-    axios.defaults.baseURL = 'http:119.45.34.76:8080';
-    axios.defaults.withCredentials = true;
-    axios({url: 'greet/hello', proxy: {host: 'http:119.45.34.76', port: 8080}})
-      .then((response) => {
-        console.log("cyc----getData2", response)
-      }).catch((error) => {
-      console.log("cyc----error", error)
-    })
+        console.log("cyc----getData1")
+         //http://119.45.34.76:8080/api/greet/hello
+        axios.get('/api/greet/hello')
+            .then((response) => {
+                console.log("cyc----getData2", response)
+            }).catch((error) => {
+            console.log("cyc----error", error)
+        })
 
-  }
+    }
 
 
 }
