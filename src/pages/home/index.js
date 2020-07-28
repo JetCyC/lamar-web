@@ -7,6 +7,7 @@
 import React, {PureComponent} from "react";
 import './index.scss';
 import axios from 'axios';
+import LoginBackGround from "../../components/particles";
 
 export default class Home extends PureComponent {
 
@@ -29,16 +30,21 @@ export default class Home extends PureComponent {
         return (
             <div className="home-bg">
                 <div className="home-text">{this.state.tips}</div>
-            </div>);
+            </div>
+        );
     }
 
     getData() {
 
         console.log("cyc----getData1")
-         //http://119.45.34.76:8080/api/greet/hello
-        axios.get('/api/greet/hello')
+        //http://119.45.34.76:8080/api/greet/hello
+        axios.defaults.baseURL = '/api';
+        axios.get('/greet/hello')
             .then((response) => {
                 console.log("cyc----getData2", response)
+                this.setState({
+                    tips: response.data
+                })
             }).catch((error) => {
             console.log("cyc----error", error)
         })
